@@ -4,6 +4,7 @@ dotenv.config();
 import express, { Request, Response, NextFunction } from "express";
 import cors from "cors";
 import helmet from "helmet";
+import cookieParser from "cookie-parser";
 
 import router from "./routes"
 import connectDB from './db';
@@ -20,6 +21,7 @@ async function startServer() {
   app.use(express.urlencoded({ extended: true }));
 
   app.use(helmet());
+  app.use(cookieParser());
 
   app.use(cors({
     origin: "*",
