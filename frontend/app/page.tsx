@@ -12,8 +12,8 @@ export default function Component() {
                   Organize Your Work, Simplify Your Life
                 </h1>
                 <p className="max-w-[80%] mx-auto text-muted-foreground md:text-xl">
-                  Personal trello like board is a powerful task management tool
-                  that helps you and your team stay organized and productive.
+                  Workflo boards are a powerful task management tool that helps
+                  you and your team stay organized and productive.
                 </p>
               </div>
               <div className="flex flex-col justify-center gap-2 min-[400px]:flex-row">
@@ -25,7 +25,7 @@ export default function Component() {
                   Try It Now
                 </Link>
                 <Link
-                  href="#"
+                  href="/signup"
                   className="inline-flex h-10 items-center justify-center rounded-md border border-input bg-background px-8 text-sm font-medium shadow-sm transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
                   prefetch={false}
                 >
