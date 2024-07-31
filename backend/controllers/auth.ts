@@ -117,7 +117,7 @@ async function login(req: Request, res: Response) {
 
     const session = await SessionModel.create({
       _id: sessionId,
-      expiresAt: new Date(Date.now() + (60 * 1000)),
+      expiresAt: new Date(Date.now() + (30 * 24 * 60 * 60 * 1000)),
       userId: existinguser._id,
     });
 
