@@ -1,17 +1,17 @@
-'use client';
+'use server';
 
 import Link from 'next/link';
-
-import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { useState } from 'react';
-import { Eye, EyeOff } from 'lucide-react';
+import SignupForm from './signupform';
+import { getSelfData } from '../actions';
+import { redirect } from 'next/navigation';
 
-export default function Signup() {
-  const [password, setPassword] = useState('');
-  const [showPassword, setShowPassword] = useState(false);
+export default async function Signup() {
+  const { isAuthenticated } = await getSelfData();
+
+  if (isAuthenticated) {
+    return redirect('/dashboard');
+  }
 
   return (
     <Card className="mx-auto max-w-md my-24 lg:my-32">
@@ -21,55 +21,7 @@ export default function Signup() {
         </CardTitle>
       </CardHeader>
       <CardContent className="mt-4">
-        <div className="grid gap-4">
-          <div className="grid gap-2">
-            <Label htmlFor="first-name" className="sr-only">
-              First name
-            </Label>
-            <Input id="first-name" placeholder="First name" required />
-          </div>
-          <div className="grid gap-2">
-            <Label htmlFor="email" className="sr-only">
-              Email
-            </Label>
-            <Input id="email" type="email" placeholder="Email" required />
-          </div>
-          <div className="w-full items-center gap-1.5">
-            <Label htmlFor="password" className="sr-only">
-              Password
-            </Label>
-            <div className="relative w-full">
-              <Input
-                id="password"
-                type={showPassword ? 'text' : 'password'}
-                placeholder="Enter your password"
-                className="pr-10 w-full"
-                value={password}
-                onChange={(e) => {
-                  setPassword(e.target.value);
-                }}
-              />
-              <Button
-                variant="ghost"
-                size="icon"
-                className="absolute bottom-[50%] translate-y-[50%] right-1 h-7 w-7"
-                onClick={() => {
-                  setShowPassword((prev) => !prev);
-                }}
-              >
-                {showPassword ? (
-                  <EyeOff className="h-4 w-4" />
-                ) : (
-                  <Eye className="h-4 w-4" />
-                )}
-                <span className="sr-only">Toggle password visibility</span>
-              </Button>
-            </div>
-          </div>
-          <Button type="submit" className="w-full">
-            Create an account
-          </Button>
-        </div>
+        <SignupForm />
         <div className="mt-4 text-center text-sm">
           Already have an account?{' '}
           <Link href="/login" className="underline">

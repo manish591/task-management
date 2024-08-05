@@ -11,6 +11,7 @@ interface SessionUserAggregate extends SessionDoc {
 export async function authenticate(req: Request, res: Response, next: NextFunction) {
   try {
     const sessionId = req.cookies[cookieName];
+    console.log("The id", req.cookies);
 
     if (!sessionId) {
       return res.status(401).json(errorResponse({
